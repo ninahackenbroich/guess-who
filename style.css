@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700;900&family=Wallpoet&display=swap");
+body {
+  background-color: #2d4059;
+  color: #ececeb;
+}
+
+h1 {
+  font-family: "Fira Sans";
+  font-weight: 900;
+}
+h2 {
+  font-family: "Fira Sans";
+  font-weight: 900;
+  font-size: 2.5rem;
+}
+
+.text-orange {
+  color: #f9a828;
+}
+.background-orange {
+  background-color: #f9a828;
+  border-color: #f9a828;
+  color: white;
+}
+.background-orange:hover {
+  background-color: #e08a00;
+  border-color: #f9a828;
+  color: white;
+}
+
+.font-fira {
+  font-family: "Fira Sans";
+  font-weight: 600;
+}
+
+.game-font {
+  font-family: "Wallpoet";
+  color: orange;
+}
+
+.main-button {
+  width: 200px !important;
+}
+
+.icon {
+  height: 30px;
+  filter: invert(88%) sepia(23%) saturate(6041%) hue-rotate(337deg)
+    brightness(98%) contrast(99%);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.card-category {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.card-category:hover {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.border-yay {
+  border-style: none;
+  border-width: 5px;
+  border-color: green;
+}
+
+.border-wrong {
+  border-color: red;
+  border-style: none;
+  border-width: 5px;
+}
+
+.card-category:hover .overlay {
+  opacity: 0.7;
+}
+
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
