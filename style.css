@@ -78,6 +78,7 @@ h2 {
 
 .overlay {
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -86,14 +87,21 @@ h2 {
   height: 100%;
   width: 100%;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: 0.3s ease;
   background-color: black;
   justify-content: center;
   align-items: center;
+}
+
+.card-text {
   color: white;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .border-yay {
