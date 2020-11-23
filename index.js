@@ -25,6 +25,7 @@ console.table(people);
 const personName = document.querySelector(".name");
 const nameToFind = document.querySelector("#employee-name");
 const cards = document.querySelectorAll(".card-category");
+const cardTexts = document.querySelectorAll(".card-text");
 const names = document.querySelectorAll(".name");
 const positions = document.querySelectorAll(".position");
 const timer = document.getElementById("timer-time");
@@ -41,6 +42,8 @@ const toggleActiveOnClick = (name) => {
 
 // Card Event listener
 const checkIfCorrect = (event) => {
+  let tempChildren = Array.from(event.target.children);
+  tempChildren.forEach(child => child.style.display = "block")
   console.log(event.target.firstElementChild.textContent);
   if (event.target.firstElementChild.textContent == nameToFind.textContent) {
     event.target.parentElement.classList.add("border-yay");
@@ -57,6 +60,7 @@ const addCardEventListner = (name) => {
 
 // Shuffle feature
 const shuffle = () => {
+  cardTexts.forEach((card) => (card.style.display = "none"));
   removeBorders();
   // get a random person
   const getRandomPersonFromList =
