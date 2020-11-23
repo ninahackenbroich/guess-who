@@ -98,6 +98,13 @@ h2 {
     brightness(98%) contrast(99%);
 }
 
+.icon-small {
+  height: 15px;
+  font-weight: bold;
+  filter: invert(88%) sepia(23%) saturate(6041%) hue-rotate(337deg)
+    brightness(98%) contrast(99%);
+}
+
 #clockdiv {
   text-align: center;
 }
@@ -213,6 +220,9 @@ h2 {
   margin: auto;
   padding: 20px;
   width: 50%;
+  img {
+    font-size: 10px;
+  }
 }
 
 .close {
