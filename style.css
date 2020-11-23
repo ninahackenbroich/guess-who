@@ -22,6 +22,28 @@ h2 {
   border-color: #f9a828;
   color: white;
 }
+
+.backgroundbody-orange {
+  background-color: #f9a828;
+  border-color: #f9a828;
+  color: white;
+}
+
+.background-blue {
+  background-color: #2d4059;
+  border-color: #2d4059;
+  color: white;
+}
+
+.background-blue:hover {
+  background-color: #1c293a;
+  border-color: #2d4059;
+  color: white;
+}
+
+.button-gone {
+  display: none;
+}
 .background-orange:hover {
   background-color: #e08a00;
   border-color: #f9a828;
@@ -64,6 +86,14 @@ h2 {
 
 #clockdiv div > span {
   display: inline-block;
+}
+
+.clock {
+  visibility: none;
+}
+
+.scores {
+  visibility: none;
 }
 
 .cards {

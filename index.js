@@ -35,7 +35,6 @@ const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");
 const spanModal = document.getElementsByClassName("close")[0];
 
-
 // Functions
 
 const toggleNameClass = (event) => {
@@ -49,7 +48,7 @@ const toggleActiveOnClick = (name) => {
 // Card Event listener
 const checkIfCorrect = (event) => {
   let tempChildren = Array.from(event.target.children);
-  tempChildren.forEach(child => child.style.display = "block")
+  tempChildren.forEach((child) => (child.style.display = "block"));
   console.log(event.target.firstElementChild.textContent);
   if (event.target.firstElementChild.textContent == nameToFind.textContent) {
     event.target.parentElement.classList.add("border-yay");
@@ -128,16 +127,17 @@ const removeBorders = () => {
 //     // console.log("tick");
 //   }, 10000);
 // };
-const timeInMinutes = 0.5;
+
+// function countdown timer
+let timeInMinutes = 0.5;
 const currentTime = Date.parse(new Date());
 const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 const startGame = () => {
   isGameRunning = true;
   initializeClock("clockdiv", deadline);
+  setUI();
 };
-
-// function countdown timer
 
 function getTimeRemaining(endtime) {
   const total = Date.parse(endtime) - Date.parse(new Date());
@@ -166,6 +166,7 @@ function initializeClock(id, endtime) {
       updateHighscore();
       resetScore();
       isGameRunning = false;
+      playAgain();
     }
   }
   updateClock();
@@ -176,18 +177,44 @@ function initializeClock(id, endtime) {
 cards.forEach(addCardEventListner);
 
 // Show content after clicking on btn Start
+const gameTop = document.querySelector(".game-top");
+const gameMiddle = document.querySelector(".game-middle");
+const gameEnd = document.querySelector(".game-bottom");
+const scoresElements = document.querySelector(".scores");
+const clockElement = document.querySelector(".clock");
+const btnPlayAgain = document.querySelector("#replay");
 
 function setUI() {
   title.classList.toggle("title");
   title.innerHTML = "Guess who is...";
   btnStart.style.display = "none";
-  document.querySelector(".game-top").style.visibility = "visible";
-  document.querySelector(".game-middle").style.display = "block";
-  document.querySelector(".game-bottom").style.display = "block";
+  gameTop.style.visibility = "visible";
+  clockElement.style.visibility = "visible";
+  scoresElements.style.visibility = "visible";
+  gameMiddle.style.display = "block";
+  gameEnd.style.display = "block";
 }
 
-btnStart.addEventListener('click', function () {
-  setUI()
+btnStart.addEventListener("click", function () {
+  startGame();
+});
+
+// reset logic
+
+const playAgain = () => {
+  document.querySelector("body").classList.add("backgroundbody-orange");
+  btnPlayAgain.classList.toggle("button-gone");
+  title.innerHTML = "What do you want to do?";
+  clockElement.style.visibility = "none";
+  scoresElements.style.color = "#2d4059";
+  gameMiddle.style.display = "none";
+  gameEnd.style.display = "none";
+};
+
+btnPlayAgain.addEventListener("click", function () {
+  btnPlayAgain.classList.toggle("button-gone");
+  document.querySelector("body").classList.remove("backgroundbody-orange");
+  scoresElements.style.color = "#f9a828";
   startGame();
 });
 
@@ -216,14 +243,13 @@ const updateHighscore = () => {
 };
 
 // MODAL HOW IT WORKS
-btn.onclick = function() {
+btn.onclick = function () {
   modal.style.display = "block";
-}
-spanModal.onclick = function() {
+};
+spanModal.onclick = function () {
   modal.style.display = "none";
-}
-window.onclick = function(event) {
-
+};
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
