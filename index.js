@@ -2,6 +2,26 @@
 let people = [];
 let isGameRunning = false;
 
+jobTitles = [
+  "CEO",
+  "COO",
+  "CFO",
+  "CMO",
+  "CTO",
+  "Marketing manager",
+  "Product manager",
+  "Project manager",
+  "Finance manager",
+  "Human resources manager",
+  "Marketing specialist",
+  "Business analyst",
+  "Human resource personnel",
+  "Accountant",
+  "Sales representative",
+  "Customer service representative",
+  "Administrative assistant",
+]; 
+
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
   let data = await response.json();
@@ -13,7 +33,7 @@ getUsers().then((data) => {
     people.push({
       id: i,
       name: data.results[i].name.first,
-      jobTitle: "TestTitle",
+      jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
