@@ -30,7 +30,7 @@
   <body>
     <!-- Add your site or application content here -->
     <div class="container p-5 text-center">
-      <div class="container d-flex row justify-content-between">
+      <div class="container d-flex row justify-content-between game-top">
         <div class="scores game-font text-left">
           <p>Score:</p>
           <p>Highscore:</p>
@@ -40,19 +40,21 @@
           <p id="timer-time">5</p>
         </div>
       </div>
-      <h1 id="guess-who">Guess who??</h1>
+      <h1 class="title mt-5" id="guess-who">Guess who?</h1>
       <!-- Changes to "Guess Who Is.." when User starts the game.-->
-      <div class="container">
+      <div class="container game-middle">
         <h2 class="text-orange" id="employee-name">Jane Doe</h2>
         <p>Click on your choice</p>
       </div>
       <button
         type="button"
         class="btn btn-lg background-orange font-fira p-3 m-3 main-button"
+        id="start"
       >
         START
       </button>
-      <div class="container">
+      <p class="rules">How to play</p>
+      <div class="container game-bottom">
 
         <div class="cards">
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(1.jpg)">
@@ -84,6 +86,7 @@
           </div>
         </div>
       </div>
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
