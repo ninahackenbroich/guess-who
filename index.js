@@ -278,6 +278,7 @@ let highscore = Number(highscoreElement.innerHTML);
 const updateHighscore = () => {
   if (score > highscore) {
     highscoreElement.innerHTML = `${score}`;
+    highscore = score;
   }
 };
 
