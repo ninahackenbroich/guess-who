@@ -40,6 +40,8 @@ h2 {
 
 .main-button {
   width: 200px !important;
+  border-radius: 10px;
+  letter-spacing: 3px;
 }
 
 .icon {
@@ -148,4 +150,22 @@ h2 {
   .cards {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+}
+
+.game-top,
+.game-middle,
+.game-bottom {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.title {
+  font-size: 100px;
+  letter-spacing: 5px;
+  padding-top: 7%;
+  margin-bottom: -8%;
+}
+
+.cards {
+  margin-top: -5%;
 }

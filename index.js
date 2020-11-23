@@ -121,6 +121,22 @@ const startGame = () => {
 // names.forEach(toggleActiveOnClick);
 cards.forEach(addCardEventListner);
 
+
+
+
+// Show content after clicking on btn Start
+const btnStart = document.getElementById("start");
+
+btnStart.addEventListener('click', function () {
+  document.getElementById("guess-who").classList.toggle("title");
+  btnStart.style.visibility = "hidden";
+  document.querySelector(".rules").style.visibility = "hidden";
+
+  document.querySelector(".game-top").style.opacity = 100;
+  document.querySelector(".game-middle").style.opacity = 100;
+  document.querySelector(".game-bottom").style.opacity = 100;
+});
+
 // Function to count the score and highscore
 
 const scoreElement = document.querySelector("#score");
@@ -144,3 +160,4 @@ const updateHighscore = () => {
     highscoreElement.innerHTML = `Highscore: ${score}`;
   }
 };
+
