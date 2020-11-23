@@ -151,7 +151,7 @@ const removeBorders = () => {
 // };
 
 // function countdown timer
-const timeInMinutes = 0.2;
+const timeInMinutes = 0.5;
 let currentTime = Date.parse(new Date());
 let deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
@@ -207,7 +207,7 @@ const clockElement = document.querySelector(".clock");
 const btnPlayAgain = document.querySelector("#replay");
 
 function setUI() {
-  title.classList.toggle("title");
+  title.classList.remove("title");
   title.innerHTML = "Guess who is...";
   btnStart.style.display = "none";
   // gameTop.style.visibility = "visible";
