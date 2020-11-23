@@ -207,6 +207,7 @@ function setUI() {
 }
 
 btnStart.addEventListener('click', function () {
+  shuffle();
   setUI()
   startGame();
 });
