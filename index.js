@@ -76,6 +76,7 @@ const checkIfCorrect = (event) => {
     updateScore();
     setTimeout(shuffle, 2000);
   } else {
+    amountOfTries += 1;
     event.target.parentElement.classList.add("border-wrong");
   }
 };
@@ -86,6 +87,7 @@ const addCardEventListner = (name) => {
 
 // Shuffle feature
 const shuffle = () => {
+  amountOfTries = 0;
   cardTexts.forEach((card) => (card.style.display = "none"));
   removeBorders();
   // get a random person
@@ -218,9 +220,20 @@ const scoreElement = document.querySelector("#score");
 const highscoreElement = document.querySelector("#highscore");
 
 let score = 0;
+let amountOfTries = 0;
+
+const calculatePoints = () => {
+  if(amountOfTries === 0){
+    return 3
+  } else if (amountOfTries === 1) {
+    return 1
+  } else {
+    return 0
+  }
+}
 
 const updateScore = () => {
-  score++;
+  score += calculatePoints();
   scoreElement.innerHTML = `Score: ${score}`;
 };
 
