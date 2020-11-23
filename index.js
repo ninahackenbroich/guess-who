@@ -118,6 +118,9 @@ const removeBorders = () => {
 //     // console.log("tick");
 //   }, 10000);
 // };
+const timeInMinutes = 0.5;
+const currentTime = Date.parse(new Date());
+const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 const startGame = () => {
   isGameRunning = true;
@@ -155,14 +158,9 @@ function initializeClock(id, endtime) {
       isGameRunning = false;
     }
   }
-
   updateClock();
   const timeinterval = setInterval(updateClock, 1000);
 }
-
-const timeInMinutes = 0.5;
-const currentTime = Date.parse(new Date());
-const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 // names.forEach(toggleActiveOnClick);
 cards.forEach(addCardEventListner);
@@ -198,11 +196,11 @@ const resetScore = () => {
   scoreElement.innerHTML = `Score: 0`;
 };
 
-let highscore = 0;
+let highscore = Number(highscoreElement.innerHTML);
 
 const updateHighscore = () => {
   if (score > highscore) {
-    highscoreElement.innerHTML = `Highscore: ${score}`;
+    highscoreElement.innerHTML = `${score}`;
   }
 };
 
@@ -217,19 +215,19 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
+// When the user clicks the button, open the modal
+btn.onclick = function () {
   modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
