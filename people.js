@@ -196,3 +196,5 @@ const people = [
     gender: "TestGender",
   },
 ];
+
+export { people };
