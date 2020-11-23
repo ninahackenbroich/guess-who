@@ -50,6 +50,18 @@ h2 {
     brightness(98%) contrast(99%);
 }
 
+#clockdiv {
+  text-align: center;
+}
+
+#clockdiv > div {
+  display: inline-block;
+}
+
+#clockdiv div > span {
+  display: inline-block;
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -96,6 +108,7 @@ h2 {
 }
 
 .card-text {
+  display: none;
   color: white;
   font-size: 24px;
   font-weight: bold;
