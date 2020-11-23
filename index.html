@@ -40,7 +40,7 @@
           <p id="timer-time">5</p>
         </div>
       </div>
-      <h1 class="title mt-5" id="guess-who">Guess who?</h1>
+      <h1 class="title mt-5" id="guess-who">GUESS WHO</h1>
       <!-- Changes to "Guess Who Is.." when User starts the game.-->
       <div class="container game-middle">
         <h2 class="text-orange" id="employee-name">Jane Doe</h2>
@@ -53,8 +53,7 @@
       >
         START
       </button>
-      <p class="rules">How to play</p>
-      <div class="container game-bottom">
+      <div class="container mb-5 game-bottom">
 
         <div class="cards">
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(1.jpg)">
@@ -86,7 +85,20 @@
           </div>
         </div>
       </div>
-    </div>
+      <button class="rules-button" id="myBtn">How it works</button>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h4 class="py-2 mt-2"><strong>This is how you play:</strong> </h4>
+          <p>1. Read the name that appears on the screen<br> 
+            2. Click on the photo you think is right until one photo border turns green<br> 
+            You will get more points if you find the right one on the first try<br> 
+            3. New photos and name will be shuffled once you found the right one<br> 
+            4. The game stops when the timer reaches 0<br> 
+          </p>
+
+        </div>
+      </div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
