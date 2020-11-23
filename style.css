@@ -42,6 +42,10 @@ h2 {
   width: 200px !important;
   border-radius: 10px;
   letter-spacing: 3px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .icon {
@@ -115,10 +119,6 @@ h2 {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.hidden {
-  visibility: hidden;
-}
-
 .border-yay {
   border-style: solid;
   border-width: 5px;
@@ -179,7 +179,12 @@ h2 {
 .title {
   font-size: 100px;
   letter-spacing: 5px;
-  padding-top: 7%;
+}
+
+.page-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto;
 }
 
 /*  Modal */

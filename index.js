@@ -29,6 +29,12 @@ const cardTexts = document.querySelectorAll(".card-text");
 const names = document.querySelectorAll(".name");
 const positions = document.querySelectorAll(".position");
 const timer = document.getElementById("timer-time");
+const btnStart = document.getElementById("start");
+const title = document.getElementById("guess-who");
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("myBtn");
+const spanModal = document.getElementsByClassName("close")[0];
+
 
 // Functions
 
@@ -170,16 +176,18 @@ function initializeClock(id, endtime) {
 cards.forEach(addCardEventListner);
 
 // Show content after clicking on btn Start
-const btnStart = document.getElementById("start");
-const title = document.getElementById("guess-who");
 
-btnStart.addEventListener('click', function () {
+function setUI() {
   title.classList.toggle("title");
   title.innerHTML = "Guess who is...";
   btnStart.style.display = "none";
   document.querySelector(".game-top").style.visibility = "visible";
   document.querySelector(".game-middle").style.display = "block";
   document.querySelector(".game-bottom").style.display = "block";
+}
+
+btnStart.addEventListener('click', function () {
+  setUI()
   startGame();
 });
 
@@ -207,15 +215,11 @@ const updateHighscore = () => {
   }
 };
 
-// How it works modal
-const modal = document.getElementById("myModal");
-const btn = document.getElementById("myBtn");
-const span = document.getElementsByClassName("close")[0];
-
+// MODAL HOW IT WORKS
 btn.onclick = function() {
   modal.style.display = "block";
 }
-span.onclick = function() {
+spanModal.onclick = function() {
   modal.style.display = "none";
 }
 window.onclick = function(event) {
