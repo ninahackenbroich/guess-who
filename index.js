@@ -122,6 +122,9 @@ const removeBorders = () => {
 //     // console.log("tick");
 //   }, 10000);
 // };
+const timeInMinutes = 0.5;
+const currentTime = Date.parse(new Date());
+const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 const startGame = () => {
   isGameRunning = true;
@@ -159,14 +162,9 @@ function initializeClock(id, endtime) {
       isGameRunning = false;
     }
   }
-
   updateClock();
   const timeinterval = setInterval(updateClock, 1000);
 }
-
-const timeInMinutes = 0.5;
-const currentTime = Date.parse(new Date());
-const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 // names.forEach(toggleActiveOnClick);
 cards.forEach(addCardEventListner);
@@ -201,11 +199,11 @@ const resetScore = () => {
   scoreElement.innerHTML = `Score: 0`;
 };
 
-let highscore = 0;
+let highscore = Number(highscoreElement.innerHTML);
 
 const updateHighscore = () => {
   if (score > highscore) {
-    highscoreElement.innerHTML = `Highscore: ${score}`;
+    highscoreElement.innerHTML = `${score}`;
   }
 };
 
@@ -221,7 +219,8 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 window.onclick = function(event) {
+
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
