@@ -1,4 +1,5 @@
 // Fetching random people from an API
+
 let people = [];
 let isGameRunning = false;
 
@@ -13,6 +14,7 @@ jobTitles = [
   "Project manager",
   "Finance manager",
   "Human resources manager",
+  "Operations Manager",
   "Marketing specialist",
   "Business analyst",
   "Human resource personnel",
@@ -20,13 +22,60 @@ jobTitles = [
   "Sales representative",
   "Customer service representative",
   "Administrative assistant",
+  "Front-End Developver",
+  "Back-End Developer",
+  "Fullstack Developer",
+  "Trainee",
+  "Intern",
+  "Property Manager",
+  "Facility Manager",
+  "Associate",
+  "Team Assistant",
+  "Working Student",
+  "Social Media Manager",
+  "PR Manager",
 ];
+
+const request = new XMLHttpRequest();
+
+request.open("GET", "http://api.dataatwork.org/v1/jobs/unusual_titles", true);
+request.onload = function () {
+  // Begin accessing JSON data here
+  const data = JSON.parse(this.response);
+
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach((job) => {
+      jobTitles.push(job.title);
+    });
+  } else {
+    console.log("error");
+  }
+};
+
+request.send();
+
+console.log(jobTitles);
+
+// async function getJobs() {
+//   let response = await fetch(
+//     "http://api.dataatwork.org/v1/jobs/unusual_titles"
+//   );
+//   let jobs = await response.json();
+//   return jobs;
+// }
+
+// const jobsJson = getJobs();
+
+// const jobbsNew = jobsJson.forEach((job) => console.log(job.title));
+
+// jobbsNew();
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
   let data = await response.json();
   return data;
 }
+
 getUsers().then((data) => {
   console.log("End of fetch");
   for (let i = 0; i < 100; i++) {
@@ -34,6 +83,7 @@ getUsers().then((data) => {
       id: i,
       name: data.results[i].name.first,
       jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
+      // jobTitle: jobs[Math.floor(Math.random() * jobs.length)],
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
