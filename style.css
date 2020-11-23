@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700;900&family=Wallpoet&display=swap");
+
+/* Basic CSS */
+
 body {
   background-color: #2d4059;
   color: #ececeb;
@@ -14,9 +17,26 @@ h2 {
   font-size: 2.5rem;
 }
 
+.font-fira {
+  font-family: "Fira Sans";
+  font-weight: 600;
+}
+
+.game-font {
+  font-family: "Wallpoet";
+  color: orange;
+}
+
 .text-orange {
   color: #f9a828;
 }
+
+.page-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto;
+}
+
 .background-orange {
   background-color: #f9a828;
   border-color: #f9a828;
@@ -25,6 +45,12 @@ h2 {
 
 .backgroundbody-orange {
   background-color: #f9a828;
+  border-color: #f9a828;
+  color: white;
+}
+
+.background-orange:hover {
+  background-color: #e08a00;
   border-color: #f9a828;
   color: white;
 }
@@ -41,23 +67,10 @@ h2 {
   color: white;
 }
 
+/* Buttons */
+
 .button-gone {
   display: none;
-}
-.background-orange:hover {
-  background-color: #e08a00;
-  border-color: #f9a828;
-  color: white;
-}
-
-.font-fira {
-  font-family: "Fira Sans";
-  font-weight: 600;
-}
-
-.game-font {
-  font-family: "Wallpoet";
-  color: orange;
 }
 
 .main-button {
@@ -70,11 +83,7 @@ h2 {
   transform: translate(-58%, -50%);
 }
 
-.page-container {
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: auto;
-}
+/* Containers */
 
 .game-top {
   visibility: hidden;
@@ -92,6 +101,8 @@ h2 {
   letter-spacing: 5px;
 }
 
+/* Icons */
+
 .icon {
   height: 30px;
   filter: invert(88%) sepia(23%) saturate(6041%) hue-rotate(337deg)
@@ -104,6 +115,8 @@ h2 {
   filter: invert(88%) sepia(23%) saturate(6041%) hue-rotate(337deg)
     brightness(98%) contrast(99%);
 }
+
+/* Timer */
 
 #clockdiv {
   text-align: center;
@@ -121,9 +134,13 @@ h2 {
   visibility: none;
 }
 
+/* Scores */
+
 .scores {
   visibility: none;
 }
+
+/* People Cards */
 
 .cards {
   display: grid;
@@ -139,8 +156,6 @@ h2 {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -170,11 +185,14 @@ h2 {
   align-items: center;
 }
 
+.card-category:hover .overlay {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .card-text {
   display: none;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -190,19 +208,7 @@ h2 {
   border-width: 5px;
 }
 
-.card-category:hover .overlay {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
 /*--------  MODAL --------*/
-.modal {
-  display: none;
-  position: fixed;
-  padding-top: 100px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
 .rules-button {
   background-color: transparent;
   border: none;
@@ -215,14 +221,27 @@ h2 {
   text-decoration: none;
 }
 
+.rules-button:active {
+  color: white;
+  text-decoration: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  padding-top: 100px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .modal-content {
   background-color: #2d4059;
   margin: auto;
   padding: 20px;
   width: 50%;
-  img {
-    font-size: 10px;
-  }
+}
+
+.modal-content > img {
+  font-size: 10px;
 }
 
 .close {
