@@ -44,6 +44,7 @@ const checkIfCorrect = (event) => {
   console.log(event.target.firstElementChild.textContent);
   if (event.target.firstElementChild.textContent == nameToFind.textContent) {
     event.target.parentElement.classList.add("border-yay");
+    updateScore();
     setTimeout(shuffle, 2000);
   } else {
     event.target.parentElement.classList.add("border-wrong");
@@ -102,12 +103,14 @@ const removeBorders = () => {
 };
 
 // Function to start the game
+
 const startGame = () => {
   isGameRunning = true;
   let countdown = setInterval(() => {
     if (parseInt(timer.textContent) > 0) {
       timer.innerText = `${parseInt(timer.textContent) - 1}`;
     } else {
+      updateHighscore();
       isGameRunning = false;
       clearInterval(countdown);
     }
@@ -117,6 +120,7 @@ const startGame = () => {
 
 // names.forEach(toggleActiveOnClick);
 cards.forEach(addCardEventListner);
+
 
 
 
@@ -132,3 +136,28 @@ btnStart.addEventListener('click', function () {
   document.querySelector(".game-middle").style.opacity = 100;
   document.querySelector(".game-bottom").style.opacity = 100;
 });
+
+// Function to count the score and highscore
+
+const scoreElement = document.querySelector("#score");
+const highscoreElement = document.querySelector("#highscore");
+
+let score = 0;
+
+const updateScore = () => {
+  score++;
+  scoreElement.innerHTML = `Score: ${score}`;
+};
+
+const resetScore = () => {
+  scoreElement.innerHTML = `Score: 0`;
+};
+
+let highscore = 0;
+
+const updateHighscore = () => {
+  if (score > highscore) {
+    highscoreElement.innerHTML = `Highscore: ${score}`;
+  }
+};
+
