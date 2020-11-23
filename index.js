@@ -2,6 +2,7 @@
 let people = [];
 let isGameRunning = false;
 
+
 jobTitles = [
   "CEO",
   "COO",
@@ -188,6 +189,7 @@ function initializeClock(id, endtime) {
       updateHighscore();
       resetScore();
       isGameRunning = false;
+      localStorage.setItem("highscore", parseInt(highscoreElement.innerHTML));
       playAgain();
     }
   }
@@ -250,6 +252,7 @@ btnPlayAgain.addEventListener("click", function () {
 
 const scoreElement = document.querySelector("#score");
 const highscoreElement = document.querySelector("#highscore");
+highscoreElement.innerText = localStorage.getItem("highscore") || 0;
 
 let score = 0;
 let amountOfTries = 0;
