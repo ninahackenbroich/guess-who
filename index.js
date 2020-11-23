@@ -20,7 +20,7 @@ jobTitles = [
   "Sales representative",
   "Customer service representative",
   "Administrative assistant",
-]; 
+];
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
@@ -151,14 +151,14 @@ const removeBorders = () => {
 // };
 
 // function countdown timer
-let timeInMinutes = 0.5;
-const currentTime = Date.parse(new Date());
-const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+const timeInMinutes = 0.2;
+let currentTime = Date.parse(new Date());
+let deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 const startGame = () => {
   isGameRunning = true;
+  score = 0;
   initializeClock("clockdiv", deadline);
-  setUI();
 };
 
 function getTimeRemaining(endtime) {
@@ -210,7 +210,7 @@ function setUI() {
   title.classList.toggle("title");
   title.innerHTML = "Guess who is...";
   btnStart.style.display = "none";
-  gameTop.style.visibility = "visible";
+  // gameTop.style.visibility = "visible";
   clockElement.style.visibility = "visible";
   scoresElements.style.visibility = "visible";
   gameMiddle.style.display = "block";
@@ -219,7 +219,7 @@ function setUI() {
 
 btnStart.addEventListener("click", function () {
   shuffle();
-  setUI()
+  setUI();
   startGame();
 });
 
@@ -239,8 +239,10 @@ btnPlayAgain.addEventListener("click", function () {
   btnPlayAgain.classList.toggle("button-gone");
   document.querySelector("body").classList.remove("backgroundbody-orange");
   scoresElements.style.color = "#f9a828";
+  currentTime = Date.parse(new Date());
+  deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
   shuffle();
-  setUI()
+  setUI();
   startGame();
 });
 
@@ -253,14 +255,14 @@ let score = 0;
 let amountOfTries = 0;
 
 const calculatePoints = () => {
-  if(amountOfTries === 0){
-    return 3
+  if (amountOfTries === 0) {
+    return 3;
   } else if (amountOfTries === 1) {
-    return 1
+    return 1;
   } else {
-    return 0
+    return 0;
   }
-}
+};
 
 const updateScore = () => {
   score += calculatePoints();
