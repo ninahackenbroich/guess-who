@@ -66,14 +66,6 @@ const highscoreElement = document.querySelector("#highscore");
 
 // Functions
 
-const toggleNameClass = (event) => {
-  event.currentTarget.classList.toggle("hidden");
-};
-
-const toggleActiveOnClick = (name) => {
-  name.addEventListener("click", toggleNameClass);
-};
-
 // Start Game
 
 btnStart.addEventListener("click", function () {
@@ -108,7 +100,6 @@ const shuffle = () => {
   for (let i = 0; i < 3; i++) {
     result.push(shuffeledListOfSameGender.pop());
   }
-  console.log(result);
   // assign the length of the result array to a value so we can use it in the for loop
   const resultSize = result.length;
   for (let i = 0; i < resultSize; i++) {
@@ -119,7 +110,6 @@ const shuffle = () => {
     cards[
       i
     ].style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${randomResultPerson.imgUrl})`;
-    console.log(randomResultPerson);
   }
 };
 
@@ -171,10 +161,10 @@ function initializeClock(id, endtime) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
-      updateHighscore();
-      resetScore();
       isGameRunning = false;
+      updateHighscore();
       localStorage.setItem("highscore", parseInt(highscoreElement.innerHTML));
+      resetScore();
       playAgain();
     }
   }
@@ -202,7 +192,15 @@ const addCardEventListner = (name) => {
   name.addEventListener("click", checkIfCorrect);
 };
 
-// names.forEach(toggleActiveOnClick);
+const toggleNameClass = (event) => {
+  event.currentTarget.classList.toggle("hidden");
+};
+
+const toggleActiveOnClick = (name) => {
+  name.addEventListener("click", toggleNameClass);
+};
+
+names.forEach(toggleActiveOnClick);
 
 cards.forEach(addCardEventListner);
 
@@ -275,6 +273,7 @@ btnPlayAgain.addEventListener("click", function () {
 });
 
 // MODAL HOW IT WORKS
+
 btn.onclick = function () {
   modal.style.display = "block";
 };
