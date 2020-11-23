@@ -35,9 +35,14 @@
           <p id="score">Score: 0</p>
           <p id="highscore">Highscore: 0</p>
         </div>
-        <div class="time text-center game-font">
+        <div class="text-center game-font">
           <img src="stopwatch .svg" alt="Stopwatch" class="icon" />
-          <p id="timer-time">5</p>
+          <!-- <p id="timer-time">10</#p> -->
+          <div id="clockdiv" class="p-2">
+            <span class="minutes"></span>
+            <span>:</span>
+            <span class="seconds"></span>
+          </div>
         </div>
       </div>
       <h1 class="title mt-5" id="guess-who">GUESS WHO</h1>
@@ -53,31 +58,67 @@
       >
         START
       </button>
-      <div class="container mb-5 game-bottom">
-
+      <p class="rules">How to play</p>
+      <div class="container game-bottom">
         <div class="cards">
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(1.jpg)">
+          <div
+            class="card-category"
+            style="
+              background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.3),
+                  rgba(0, 0, 0, 0.3)
+                ),
+                url(1.jpg);
+            "
+          >
             <div class="overlay">
               <h3 class="card-text name">Jane Doe</h3>
               <h3 class="card-text position">Position</h3>
             </div>
           </div>
-        
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(2.jpg)">
+
+          <div
+            class="card-category"
+            style="
+              background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.3),
+                  rgba(0, 0, 0, 0.3)
+                ),
+                url(2.jpg);
+            "
+          >
             <div class="overlay">
               <h3 class="card-text name">Ella</h3>
               <h3 class="card-text position">Position</h3>
             </div>
           </div>
-        
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(3.jpg)">
+
+          <div
+            class="card-category"
+            style="
+              background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.3),
+                  rgba(0, 0, 0, 0.3)
+                ),
+                url(3.jpg);
+            "
+          >
             <div class="overlay">
               <h3 class="card-text name">Joanna</h3>
               <h3 class="card-text position">Position</h3>
             </div>
           </div>
 
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(4.jpg)">
+          <div
+            class="card-category"
+            style="
+              background-image: linear-gradient(
+                  rgba(0, 0, 0, 0.3),
+                  rgba(0, 0, 0, 0.3)
+                ),
+                url(4.jpg);
+            "
+          >
             <div class="overlay">
               <h3 class="card-text name">Idk</h3>
               <h3 class="card-text position">Position</h3>

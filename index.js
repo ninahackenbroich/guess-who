@@ -104,30 +104,73 @@ const removeBorders = () => {
 
 // Function to start the game
 
+// const startGame = () => {
+//   isGameRunning = true;
+//   let countdown = setInterval(() => {
+//     if (parseInt(timer.innerHTML) > 0) {
+//       timer.innerHTML = `${parseInt(timer.innerHTML) - 1}`;
+//     } else {
+//       updateHighscore();
+//       resetScore();
+//       isGameRunning = false;
+//       clearInterval(countdown);
+//     }
+//     // console.log("tick");
+//   }, 10000);
+// };
+
 const startGame = () => {
   isGameRunning = true;
-  let countdown = setInterval(() => {
-    if (parseInt(timer.textContent) > 0) {
-      timer.innerText = `${parseInt(timer.textContent) - 1}`;
-    } else {
-      updateHighscore();
-      isGameRunning = false;
-      clearInterval(countdown);
-    }
-    // console.log("tick");
-  }, 1000);
+  initializeClock("clockdiv", deadline);
 };
+
+// function countdown timer
+
+function getTimeRemaining(endtime) {
+  const total = Date.parse(endtime) - Date.parse(new Date());
+  const seconds = Math.floor((total / 1000) % 60);
+  const minutes = Math.floor((total / 1000 / 60) % 60);
+
+  return {
+    total,
+    minutes,
+    seconds,
+  };
+}
+
+function initializeClock(id, endtime) {
+  const clock = document.getElementById(id);
+  const minutesSpan = clock.querySelector(".minutes");
+  const secondsSpan = clock.querySelector(".seconds");
+
+  function updateClock() {
+    const t = getTimeRemaining(endtime);
+    minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+      updateHighscore();
+      resetScore();
+      isGameRunning = false;
+    }
+  }
+
+  updateClock();
+  const timeinterval = setInterval(updateClock, 1000);
+}
+
+const timeInMinutes = 0.5;
+const currentTime = Date.parse(new Date());
+const deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
 
 // names.forEach(toggleActiveOnClick);
 cards.forEach(addCardEventListner);
 
-
-
-
 // Show content after clicking on btn Start
 const btnStart = document.getElementById("start");
 
-btnStart.addEventListener('click', function () {
+btnStart.addEventListener("click", function () {
   document.getElementById("guess-who").classList.toggle("title");
   document.getElementById("guess-who").innerHTML = "Guess who is...";
 
@@ -136,6 +179,7 @@ btnStart.addEventListener('click', function () {
   document.querySelector(".game-top").style.opacity = 100;
   document.querySelector(".game-middle").style.opacity = 100;
   document.querySelector(".game-bottom").style.opacity = 100;
+  startGame();
 });
 
 // Function to count the score and highscore
