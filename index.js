@@ -2,6 +2,26 @@
 let people = [];
 let isGameRunning = false;
 
+jobTitles = [
+  "CEO",
+  "COO",
+  "CFO",
+  "CMO",
+  "CTO",
+  "Marketing manager",
+  "Product manager",
+  "Project manager",
+  "Finance manager",
+  "Human resources manager",
+  "Marketing specialist",
+  "Business analyst",
+  "Human resource personnel",
+  "Accountant",
+  "Sales representative",
+  "Customer service representative",
+  "Administrative assistant",
+]; 
+
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
   let data = await response.json();
@@ -13,7 +33,7 @@ getUsers().then((data) => {
     people.push({
       id: i,
       name: data.results[i].name.first,
-      jobTitle: "TestTitle",
+      jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
@@ -55,6 +75,7 @@ const checkIfCorrect = (event) => {
     updateScore();
     setTimeout(shuffle, 2000);
   } else {
+    amountOfTries += 1;
     event.target.parentElement.classList.add("border-wrong");
   }
 };
@@ -65,6 +86,7 @@ const addCardEventListner = (name) => {
 
 // Shuffle feature
 const shuffle = () => {
+  amountOfTries = 0;
   cardTexts.forEach((card) => (card.style.display = "none"));
   removeBorders();
   // get a random person
@@ -196,6 +218,8 @@ function setUI() {
 }
 
 btnStart.addEventListener("click", function () {
+  shuffle();
+  setUI()
   startGame();
 });
 
@@ -215,6 +239,8 @@ btnPlayAgain.addEventListener("click", function () {
   btnPlayAgain.classList.toggle("button-gone");
   document.querySelector("body").classList.remove("backgroundbody-orange");
   scoresElements.style.color = "#f9a828";
+  shuffle();
+  setUI()
   startGame();
 });
 
@@ -224,9 +250,20 @@ const scoreElement = document.querySelector("#score");
 const highscoreElement = document.querySelector("#highscore");
 
 let score = 0;
+let amountOfTries = 0;
+
+const calculatePoints = () => {
+  if(amountOfTries === 0){
+    return 3
+  } else if (amountOfTries === 1) {
+    return 1
+  } else {
+    return 0
+  }
+}
 
 const updateScore = () => {
-  score++;
+  score += calculatePoints();
   scoreElement.innerHTML = `Score: ${score}`;
 };
 
