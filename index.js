@@ -3,25 +3,25 @@
 let people = [];
 let isGameRunning = false;
 
-jobTitles = [
+let jobTitles = [
   "CEO",
   "COO",
   "CFO",
   "CMO",
   "CTO",
-  "Marketing manager",
-  "Product manager",
-  "Project manager",
-  "Finance manager",
-  "Human resources manager",
+  "Marketing Manager",
+  "Product Manager",
+  "Project Manager",
+  "Finance Manager",
+  "Human Resources Manager",
   "Operations Manager",
-  "Marketing specialist",
-  "Business analyst",
-  "Human resource personnel",
+  "Marketing Specialist",
+  "Business Analyst",
+  "Human Resource Personnel",
   "Accountant",
-  "Sales representative",
-  "Customer service representative",
-  "Administrative assistant",
+  "Sales Representative",
+  "Customer Service Representative",
+  "Administrative Assistant",
   "Front-End Developver",
   "Back-End Developer",
   "Fullstack Developer",
@@ -36,39 +36,13 @@ jobTitles = [
   "PR Manager",
 ];
 
-const request = new XMLHttpRequest();
-
-request.open("GET", "http://api.dataatwork.org/v1/jobs/unusual_titles", true);
-request.onload = function () {
-  // Begin accessing JSON data here
-  const data = JSON.parse(this.response);
-
-  if (request.status >= 200 && request.status < 400) {
-    data.forEach((job) => {
-      jobTitles.push(job.title);
-    });
-  } else {
-    console.log("error");
-  }
-};
-
-request.send();
-
-console.log(jobTitles);
-
-// async function getJobs() {
-//   let response = await fetch(
-//     "http://api.dataatwork.org/v1/jobs/unusual_titles"
-//   );
-//   let jobs = await response.json();
-//   return jobs;
-// }
-
-// const jobsJson = getJobs();
-
-// const jobbsNew = jobsJson.forEach((job) => console.log(job.title));
-
-// jobbsNew();
+async function getJobs() {
+  let response = await fetch(
+    "http://api.dataatwork.org/v1/jobs/unusual_titles"
+  );
+  let data = await response.json();
+  return data;
+}
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
@@ -82,15 +56,24 @@ getUsers().then((data) => {
     people.push({
       id: i,
       name: data.results[i].name.first,
-      jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
-      // jobTitle: jobs[Math.floor(Math.random() * jobs.length)],
+      jobTitle: "",
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
   }
 });
 
-// console.table(people);
+getJobs().then((data) => {
+  data.forEach((da) => {
+    // jobTitles.push(da.title[0].toUpperCase() + da.title.substring(1));
+    jobTitles.push(da.title.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()));
+  });
+  console.log("End of fetch");
+  for (let i = 0; i < 100; i++) {
+    people[i].jobTitle =
+      jobTitles[Math.floor(Math.random() * jobTitles.length)];
+  }
+});
 
 // Elements
 const personName = document.querySelector(".name");
