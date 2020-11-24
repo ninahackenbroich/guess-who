@@ -1,34 +1,36 @@
 {
   "dependencies": {
     "@popperjs/core": "^2.5.4",
-    "core-js": "^3.6.5",
-    "leaflet": "^1.6.0",
-    "lodash-es": "^4.17.15",
-    "regenerator-runtime": "^0.13.7",
+    "bootstrap": "^4.5.3",
+    "core-js": "^3.7.0",
     "jquery": "^3.5.1",
     "parcel-bundler": "^1.12.4",
-    "popper.js": "^1.16.1",
-    "bootstrap": "^4.5.3"
+    "popper.js": "^1.16.1"
   },
   "name": "guess-who",
   "version": "1.0.0",
   "main": "index.js",
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
   "engines": {
     "node": "12.x",
     "npm": "6.x"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
     "build": "parcel build index.html"
-  },
-  "author": "NINA",
-  "license": "",
-  "devDependencies": {
-    "parcel": "^1.12.4"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ninahackenbroich/guess-who.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninahackenbroich/guess-who/issues"
   },
   "homepage": "https://github.com/ninahackenbroich/guess-who#readme",
   "description": ""
