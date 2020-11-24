@@ -36,27 +36,13 @@ let jobTitles = [
   "PR Manager",
 ];
 
-console.log(typeof jobTitles);
-
-const jobTtls = function () {
-  fetch(`http://api.dataatwork.org/v1/jobs/unusual_titles`)
-    .then((res) => {
-      if (!res.ok) throw new Error(`Problem with API ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      // console.log(data);
-      // console.log(data[0].title);
-      data.forEach((da) => {
-        // console.log(typeof da.title);
-        jobTitles.push(da.title);
-      });
-    });
-};
-
-jobTtls();
-
-console.log(jobTitles);
+async function getJobs() {
+  let response = await fetch(
+    "http://api.dataatwork.org/v1/jobs/unusual_titles"
+  );
+  let data = await response.json();
+  return data;
+}
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
@@ -70,15 +56,23 @@ getUsers().then((data) => {
     people.push({
       id: i,
       name: data.results[i].name.first,
-      jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
-      // jobTitle: jobs[Math.floor(Math.random() * jobs.length)],
+      jobTitle: "",
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
   }
 });
 
-// console.table(people);
+getJobs().then((data) => {
+  data.forEach((da) => {
+    jobTitles.push(da.title);
+  });
+  console.log("End of fetch");
+  for (let i = 0; i < 100; i++) {
+    people[i].jobTitle =
+      jobTitles[Math.floor(Math.random() * jobTitles.length)];
+  }
+});
 
 // Elements
 const personName = document.querySelector(".name");
