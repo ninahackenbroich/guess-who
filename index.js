@@ -9,19 +9,19 @@ let jobTitles = [
   "CFO",
   "CMO",
   "CTO",
-  "Marketing manager",
-  "Product manager",
-  "Project manager",
-  "Finance manager",
-  "Human resources manager",
+  "Marketing Manager",
+  "Product Manager",
+  "Project Manager",
+  "Finance Manager",
+  "Human Resources Manager",
   "Operations Manager",
-  "Marketing specialist",
-  "Business analyst",
-  "Human resource personnel",
+  "Marketing Specialist",
+  "Business Analyst",
+  "Human Resource Personnel",
   "Accountant",
-  "Sales representative",
-  "Customer service representative",
-  "Administrative assistant",
+  "Sales Representative",
+  "Customer Service Representative",
+  "Administrative Assistant",
   "Front-End Developver",
   "Back-End Developer",
   "Fullstack Developer",
@@ -65,7 +65,8 @@ getUsers().then((data) => {
 
 getJobs().then((data) => {
   data.forEach((da) => {
-    jobTitles.push(da.title);
+    // jobTitles.push(da.title[0].toUpperCase() + da.title.substring(1));
+    jobTitles.push(da.title.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()));
   });
   console.log("End of fetch");
   for (let i = 0; i < 100; i++) {
