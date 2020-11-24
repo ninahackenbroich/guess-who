@@ -13,7 +13,8 @@
     "babel-cli": "^6.26.0"
   },
   "engines": {
-    "node": "12.13.x"
+    "node": "12.13.x",
+    "npm": "6.14.6"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
