@@ -1,7 +1,7 @@
 // Fetching random people from an API
+
 let people = [];
 let isGameRunning = false;
-
 
 jobTitles = [
   "CEO",
@@ -14,6 +14,7 @@ jobTitles = [
   "Project manager",
   "Finance manager",
   "Human resources manager",
+  "Operations Manager",
   "Marketing specialist",
   "Business analyst",
   "Human resource personnel",
@@ -21,13 +22,60 @@ jobTitles = [
   "Sales representative",
   "Customer service representative",
   "Administrative assistant",
+  "Front-End Developver",
+  "Back-End Developer",
+  "Fullstack Developer",
+  "Trainee",
+  "Intern",
+  "Property Manager",
+  "Facility Manager",
+  "Associate",
+  "Team Assistant",
+  "Working Student",
+  "Social Media Manager",
+  "PR Manager",
 ];
+
+const request = new XMLHttpRequest();
+
+request.open("GET", "http://api.dataatwork.org/v1/jobs/unusual_titles", true);
+request.onload = function () {
+  // Begin accessing JSON data here
+  const data = JSON.parse(this.response);
+
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach((job) => {
+      jobTitles.push(job.title);
+    });
+  } else {
+    console.log("error");
+  }
+};
+
+request.send();
+
+console.log(jobTitles);
+
+// async function getJobs() {
+//   let response = await fetch(
+//     "http://api.dataatwork.org/v1/jobs/unusual_titles"
+//   );
+//   let jobs = await response.json();
+//   return jobs;
+// }
+
+// const jobsJson = getJobs();
+
+// const jobbsNew = jobsJson.forEach((job) => console.log(job.title));
+
+// jobbsNew();
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
   let data = await response.json();
   return data;
 }
+
 getUsers().then((data) => {
   console.log("End of fetch");
   for (let i = 0; i < 100; i++) {
@@ -35,13 +83,15 @@ getUsers().then((data) => {
       id: i,
       name: data.results[i].name.first,
       jobTitle: jobTitles[Math.floor(Math.random() * jobTitles.length)],
+      // jobTitle: jobs[Math.floor(Math.random() * jobs.length)],
       imgUrl: data.results[i].picture.large,
       gender: data.results[i].gender,
     });
   }
 });
 
-console.table(people);
+// console.table(people);
+
 // Elements
 const personName = document.querySelector(".name");
 const nameToFind = document.querySelector("#employee-name");
@@ -55,37 +105,27 @@ const title = document.getElementById("guess-who");
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("myBtn");
 const spanModal = document.getElementsByClassName("close")[0];
+const gameTop = document.querySelector(".game-top");
+const gameMiddle = document.querySelector(".game-middle");
+const gameEnd = document.querySelector(".game-bottom");
+const scoresElements = document.querySelector(".scores");
+const clockElement = document.querySelector(".clock");
+const btnPlayAgain = document.querySelector("#replay");
+const scoreElement = document.querySelector("#score");
+const highscoreElement = document.querySelector("#highscore");
 
 // Functions
 
-const toggleNameClass = (event) => {
-  event.currentTarget.classList.toggle("hidden");
-};
+// Start Game
 
-const toggleActiveOnClick = (name) => {
-  name.addEventListener("click", toggleNameClass);
-};
-
-// Card Event listener
-const checkIfCorrect = (event) => {
-  let tempChildren = Array.from(event.target.children);
-  tempChildren.forEach((child) => (child.style.display = "block"));
-  console.log(event.target.firstElementChild.textContent);
-  if (event.target.firstElementChild.textContent == nameToFind.textContent) {
-    event.target.parentElement.classList.add("border-yay");
-    updateScore();
-    setTimeout(shuffle, 2000);
-  } else {
-    amountOfTries += 1;
-    event.target.parentElement.classList.add("border-wrong");
-  }
-};
-
-const addCardEventListner = (name) => {
-  name.addEventListener("click", checkIfCorrect);
-};
+btnStart.addEventListener("click", function () {
+  shuffle();
+  setUI();
+  startGame();
+});
 
 // Shuffle feature
+
 const shuffle = () => {
   amountOfTries = 0;
   cardTexts.forEach((card) => (card.style.display = "none"));
@@ -110,7 +150,6 @@ const shuffle = () => {
   for (let i = 0; i < 3; i++) {
     result.push(shuffeledListOfSameGender.pop());
   }
-  console.log(result);
   // assign the length of the result array to a value so we can use it in the for loop
   const resultSize = result.length;
   for (let i = 0; i < resultSize; i++) {
@@ -121,40 +160,23 @@ const shuffle = () => {
     cards[
       i
     ].style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${randomResultPerson.imgUrl})`;
-    console.log(randomResultPerson);
   }
 };
 
-// Function to remove yay/wrong borders
-const removeBorders = () => {
-  cards.forEach((card) => {
-    // remove all classes from element
-    card.classList.remove(...card.classList);
-    card.classList.add("card-category");
-  });
-};
+// Show content after clicking on btn Start
 
-// Function to start the game
+function setUI() {
+  title.classList.remove("title");
+  title.innerHTML = "Guess who is...";
+  btnStart.style.display = "none";
+  // gameTop.style.visibility = "visible";
+  clockElement.style.visibility = "visible";
+  scoresElements.style.visibility = "visible";
+  gameMiddle.style.display = "block";
+  gameEnd.style.display = "block";
+}
 
-// const startGame = () => {
-//   isGameRunning = true;
-//   let countdown = setInterval(() => {
-//     if (parseInt(timer.innerHTML) > 0) {
-//       timer.innerHTML = `${parseInt(timer.innerHTML) - 1}`;
-//     } else {
-//       updateHighscore();
-//       resetScore();
-//       isGameRunning = false;
-//       clearInterval(countdown);
-//     }
-//     // console.log("tick");
-//   }, 10000);
-// };
-
-// function countdown timer
-const timeInMinutes = 0.5;
-let currentTime = Date.parse(new Date());
-let deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+// Countdown timer
 
 const startGame = () => {
   isGameRunning = true;
@@ -162,11 +184,14 @@ const startGame = () => {
   initializeClock("clockdiv", deadline);
 };
 
+const timeInMinutes = 0.5;
+let currentTime = Date.parse(new Date());
+let deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+
 function getTimeRemaining(endtime) {
   const total = Date.parse(endtime) - Date.parse(new Date());
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
-
   return {
     total,
     minutes,
@@ -186,10 +211,10 @@ function initializeClock(id, endtime) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
-      updateHighscore();
-      resetScore();
       isGameRunning = false;
+      updateHighscore();
       localStorage.setItem("highscore", parseInt(highscoreElement.innerHTML));
+      resetScore();
       playAgain();
     }
   }
@@ -197,61 +222,50 @@ function initializeClock(id, endtime) {
   const timeinterval = setInterval(updateClock, 1000);
 }
 
-// names.forEach(toggleActiveOnClick);
-cards.forEach(addCardEventListner);
+// Active Card - Wrong or right?? - Set Borders
 
-// Show content after clicking on btn Start
-const gameTop = document.querySelector(".game-top");
-const gameMiddle = document.querySelector(".game-middle");
-const gameEnd = document.querySelector(".game-bottom");
-const scoresElements = document.querySelector(".scores");
-const clockElement = document.querySelector(".clock");
-const btnPlayAgain = document.querySelector("#replay");
-
-function setUI() {
-  title.classList.remove("title");
-  title.innerHTML = "Guess who is...";
-  btnStart.style.display = "none";
-  // gameTop.style.visibility = "visible";
-  clockElement.style.visibility = "visible";
-  scoresElements.style.visibility = "visible";
-  gameMiddle.style.display = "block";
-  gameEnd.style.display = "block";
-}
-
-btnStart.addEventListener("click", function () {
-  shuffle();
-  setUI();
-  startGame();
-});
-
-// reset logic
-
-const playAgain = () => {
-  document.querySelector("body").classList.add("backgroundbody-orange");
-  btnPlayAgain.classList.toggle("button-gone");
-  title.innerHTML = "What do you want to do?";
-  clockElement.style.visibility = "none";
-  scoresElements.style.color = "#2d4059";
-  gameMiddle.style.display = "none";
-  gameEnd.style.display = "none";
+const checkIfCorrect = (event) => {
+  let tempChildren = Array.from(event.target.children);
+  tempChildren.forEach((child) => (child.style.display = "block"));
+  console.log(event.target.firstElementChild.textContent);
+  if (event.target.firstElementChild.textContent == nameToFind.textContent) {
+    event.target.parentElement.classList.add("border-yay");
+    updateScore();
+    setTimeout(shuffle, 2000);
+  } else {
+    amountOfTries += 1;
+    event.target.parentElement.classList.add("border-wrong");
+  }
 };
 
-btnPlayAgain.addEventListener("click", function () {
-  btnPlayAgain.classList.toggle("button-gone");
-  document.querySelector("body").classList.remove("backgroundbody-orange");
-  scoresElements.style.color = "#f9a828";
-  currentTime = Date.parse(new Date());
-  deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
-  shuffle();
-  setUI();
-  startGame();
-});
+const addCardEventListner = (name) => {
+  name.addEventListener("click", checkIfCorrect);
+};
+
+const toggleNameClass = (event) => {
+  event.currentTarget.classList.toggle("hidden");
+};
+
+const toggleActiveOnClick = (name) => {
+  name.addEventListener("click", toggleNameClass);
+};
+
+names.forEach(toggleActiveOnClick);
+
+cards.forEach(addCardEventListner);
+
+// Function to remove yay/wrong borders
+
+const removeBorders = () => {
+  cards.forEach((card) => {
+    // remove all classes from element
+    card.classList.remove(...card.classList);
+    card.classList.add("card-category");
+  });
+};
 
 // Function to count the score and highscore
 
-const scoreElement = document.querySelector("#score");
-const highscoreElement = document.querySelector("#highscore");
 highscoreElement.innerText = localStorage.getItem("highscore") || 0;
 
 let score = 0;
@@ -285,7 +299,31 @@ const updateHighscore = () => {
   }
 };
 
+// reset logic
+
+const playAgain = () => {
+  document.querySelector("body").classList.add("backgroundbody-orange");
+  btnPlayAgain.classList.toggle("button-gone");
+  title.innerHTML = "What do you want to do?";
+  clockElement.style.visibility = "none";
+  scoresElements.style.color = "#2d4059";
+  gameMiddle.style.display = "none";
+  gameEnd.style.display = "none";
+};
+
+btnPlayAgain.addEventListener("click", function () {
+  btnPlayAgain.classList.toggle("button-gone");
+  document.querySelector("body").classList.remove("backgroundbody-orange");
+  scoresElements.style.color = "#f9a828";
+  currentTime = Date.parse(new Date());
+  deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+  shuffle();
+  setUI();
+  startGame();
+});
+
 // MODAL HOW IT WORKS
+
 btn.onclick = function () {
   modal.style.display = "block";
 };
