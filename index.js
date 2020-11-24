@@ -3,7 +3,7 @@
 let people = [];
 let isGameRunning = false;
 
-jobTitles = [
+let jobTitles = [
   "CEO",
   "COO",
   "CFO",
@@ -36,39 +36,27 @@ jobTitles = [
   "PR Manager",
 ];
 
-const request = new XMLHttpRequest();
+console.log(typeof jobTitles);
 
-request.open("GET", "http://api.dataatwork.org/v1/jobs/unusual_titles", true);
-request.onload = function () {
-  // Begin accessing JSON data here
-  const data = JSON.parse(this.response);
-
-  if (request.status >= 200 && request.status < 400) {
-    data.forEach((job) => {
-      jobTitles.push(job.title);
+const jobTtls = function () {
+  fetch(`http://api.dataatwork.org/v1/jobs/unusual_titles`)
+    .then((res) => {
+      if (!res.ok) throw new Error(`Problem with API ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      // console.log(data);
+      // console.log(data[0].title);
+      data.forEach((da) => {
+        // console.log(typeof da.title);
+        jobTitles.push(da.title);
+      });
     });
-  } else {
-    console.log("error");
-  }
 };
 
-request.send();
+jobTtls();
 
 console.log(jobTitles);
-
-// async function getJobs() {
-//   let response = await fetch(
-//     "http://api.dataatwork.org/v1/jobs/unusual_titles"
-//   );
-//   let jobs = await response.json();
-//   return jobs;
-// }
-
-// const jobsJson = getJobs();
-
-// const jobbsNew = jobsJson.forEach((job) => console.log(job.title));
-
-// jobbsNew();
 
 async function getUsers() {
   let response = await fetch("https://randomuser.me/api/?results=100");
