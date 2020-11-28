@@ -6,7 +6,7 @@ Find out which name belongs to which person by clicking on the picture.
 The better you are, the more points you get.
 Attention: Time is running!
 
-Guess Who 2.0 >> What could be the next steps?? 
+# Guess Who 2.0 >> What could be the next steps?? 
 - Company Profiles
 - Payment
 - Playing by Categories
@@ -14,7 +14,7 @@ Guess Who 2.0 >> What could be the next steps??
 - Progress Bar
 - Internal Highscore
 
-Guess who did this...
+# Guess who did this...
 
 Celine Chambre
 Ivaylo Dyakov
@@ -23,7 +23,7 @@ Nina Hackenbroich
 
 -------------------------
 
-Personal Note to Codesphere and the Hack@Home Team:
+# Personal Note to Codesphere and the Hack@Home Team:
 
 We are programming beginners so we made this in Vanilla JS and worked on it 4 days ago since we couldn't work together today all the time. 
 Still we wanted to participate and checkout your great new product at codesphere. 
