@@ -16,9 +16,7 @@ Attention: Time is running!
 
 # Guess who did this...
 
-Celine Chambre
-Ivaylo Dyakov
-Nina Hackenbroich
+Celine Chambre, Ivaylo Dyakov and Nina Hackenbroich
 
 
 -------------------------
