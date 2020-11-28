@@ -1,4 +1,6 @@
-# guess-who
+Link to final game: http://guess-who-js.herokuapp.com/index.html
+
+# guess-who 
 
 Onboarding Game to get you new colleagues better, even in Homeoffice!
 
