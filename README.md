@@ -7,12 +7,12 @@ The better you are, the more points you get.
 Attention: Time is running!
 
 Guess Who 2.0 >> What could be the next steps?? 
-# Company Profiles
-# Payment
-# Playing by Categories
-# Additional Info (hobbies, etc. )
-# Progress Bar
-# Internal Highscore
+- Company Profiles
+- Payment
+- Playing by Categories
+- Additional Info (hobbies, etc. )
+- Progress Bar
+- Internal Highscore
 
 Guess who did this...
 
